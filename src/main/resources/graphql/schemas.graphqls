@@ -1,0 +1,31 @@
+# ====== Interface ======
+interface Person {
+    username: String!
+}
+
+# ====== Inputs ======
+input UserRequest {
+    username: String!
+    password: String!
+}
+
+input AuthRequest {
+    username: String!
+    password: String!
+}
+
+# ====== Types ======
+type UserResponse implements Person {
+    id: ID!
+    username: String!
+}
+
+type AuthorResponse {
+    id: ID!
+    name: String!
+}
+
+type AuthResponse implements Person {
+    username: String!
+    accessToken: String!
+}
