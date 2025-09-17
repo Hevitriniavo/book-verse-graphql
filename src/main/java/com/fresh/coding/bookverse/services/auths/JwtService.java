@@ -16,12 +16,12 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-class JwtService {
+public class JwtService {
     private final SecretKey SECRET_KEY;
     private final long EXPIRATION;
     private final TimeProvider timeProvider;
 
-    JwtService(@NonNull JwtProperties jwtProperties, @NonNull TimeProvider timeProvider) {
+    public JwtService(@NonNull JwtProperties jwtProperties, @NonNull TimeProvider timeProvider) {
         this.SECRET_KEY = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
         this.EXPIRATION = jwtProperties.getExpiration();
         this.timeProvider = timeProvider;
@@ -58,7 +58,7 @@ class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    private String extractUsername(String token) {
+    String extractUsername(String token) {
         return extractAllClaims(token, Claims::getSubject);
     }
 
